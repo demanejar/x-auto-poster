@@ -3,6 +3,8 @@
 const apiKey = process.env.API_KEY_GOOGLE_AI_STUDIO;
 const clientId = process.env.X_CLIENT_ID;
 const clientSecret = process.env.X_CLIENT_SECRET;
+const accessToken = process.env.X_ACCESS_TOKEN;
+const accessSecret = process.env.X_ACCESS_SECRET;
 
 console.log("API Key:", apiKey);
 console.log("Client ID:", clientId);
@@ -10,19 +12,18 @@ console.log("Client Secret:", clientSecret);
 
 const GenAI = require("@google/generative-ai");
 const { TwitterApi } = require("twitter-api-v2");
-const SECRETS = require("./SECRETS");
 
 const twitterClient = new TwitterApi({
-  appKey: SECRETS.APP_KEY,
-  appSecret: SECRETS.APP_SECRET,
-  accessToken: SECRETS.ACCESS_TOKEN,
-  accessSecret: SECRETS.ACCESS_SECRET,
+  appKey: clientId,
+  appSecret: clientSecret,
+  accessToken: accessToken,
+  accessSecret: accessSecret,
 });
 
 const generationConfig = {
   maxOutputTokens: 400,
 };
-const genAI = new GenAI.GoogleGenerativeAI(SECRETS.GEMINI_API_KEY);
+const genAI = new GenAI.GoogleGenerativeAI(apiKey);
 
 async function run() {
   // For text-only input, use the gemini-pro model
