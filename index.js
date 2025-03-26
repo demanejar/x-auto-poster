@@ -1,5 +1,13 @@
 // By VishwaGauravIn (https://itsvg.in)
 
+const apiKey = process.env.API_KEY_GOOGLE_AI_STUDIO;
+const clientId = process.env.X_CLIENT_ID;
+const clientSecret = process.env.X_CLIENT_SECRET;
+
+console.log("API Key:", apiKey);
+console.log("Client ID:", clientId);
+console.log("Client Secret:", clientSecret);
+
 const GenAI = require("@google/generative-ai");
 const { TwitterApi } = require("twitter-api-v2");
 const SECRETS = require("./SECRETS");
