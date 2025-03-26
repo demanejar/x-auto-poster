@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    name: Auto Tweet Using AI
+    name: Auto Post to X Using AI
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -21,6 +21,10 @@ jobs:
           node-version: "20.x"
       - name: Install Dependencies
         run: npm i
-      - name: Run Twitter bot
-        run: npm start ${{ secrets.API_KEY_GOOGLE_AI_STUDIO }} ${{ secrets.X_CLIENT_ID }} ${{ secrets.X_CLIENT_SECRET }}
+      - name: Run X bot
+        run: npm start
+        env:
+          API_KEY_GOOGLE_AI_STUDIO: ${{ secrets.API_KEY_GOOGLE_AI_STUDIO }}
+          X_CLIENT_ID: ${{ secrets.X_CLIENT_ID }}
+          X_CLIENT_SECRET: ${{ secrets.X_CLIENT_SECRET }}
 
