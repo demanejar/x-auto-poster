@@ -24,7 +24,7 @@ jobs:
       - name: Run X bot
         run: npm start
         env:
-          API_KEY_GOOGLE_AI_STUDIO: '11'
+          API_KEY_GOOGLE_AI_STUDIO: ${{ API_KEY_GOOGLE_AI_STUDIO }}
           X_CLIENT_ID: ${{ secrets.X_CLIENT_ID }}
           X_CLIENT_SECRET: ${{ secrets.X_CLIENT_SECRET }}
 
