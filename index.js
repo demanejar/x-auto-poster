@@ -5,6 +5,8 @@ const clientId = process.env.X_CLIENT_ID;
 const clientSecret = process.env.X_CLIENT_SECRET;
 const accessToken = process.env.X_ACCESS_TOKEN;
 const accessSecret = process.env.X_ACCESS_SECRET;
+const teleBotToken = process.env.TELE_BOT_TOKEN;
+const teleChatId = process.env.TELE_CHAT_ID;
 
 console.log("API Key:", apiKey);
 console.log("Client ID:", clientId);
@@ -34,7 +36,7 @@ async function run() {
 
   // Write your prompt here
   const prompt =
-    "generate a bigdata content or crawler, tips and tricks or something new or some rant or some advice as a tweet, it should not be vague and should be unique; under 280 characters and should be plain text, you can use emojis";
+    "create bigdata content like Spark, Hadoop or other opensource or crawler, under 280 characters and must be plain text, you can use emojis, insert website link https://demanejar.github.io/ and tag #demanejar into the post, occasionally attach a link to an article in demanejar into the post.";
 
   const result = await model.generateContent(prompt);
   const response = await result.response;
@@ -46,10 +48,20 @@ async function run() {
 run();
 
 async function sendTweet(tweetText) {
+  let message = "";
   try {
     await twitterClient.v2.tweet(tweetText);
-    console.log("Tweet sent successfully!");
+
+    message = "☕☕☕ Tweet sent successfully post in Demanejar X! Check in https://x.com/Demanejar";
+    console.log("Tweet sent successfully post in Demanejar!");
   } catch (error) {
+    message = "☕☕☕ Tweet sent error, check your github action!!";
     console.error("Error sending tweet:", error);
   }
+
+  const url = `https://api.telegram.org/bot${teleBotToken}/sendMessage?chat_id=${teleChatId}&text=${encodeURIComponent(message)}`;
+  fetch(url)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
 }
