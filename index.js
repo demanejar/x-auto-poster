@@ -28,7 +28,7 @@ const genAI = new GenAI.GoogleGenerativeAI(apiKey);
 async function run() {
   // For text-only input, use the gemini-pro model
   const model = genAI.getGenerativeModel({
-    model: "gemini-pro",
+    model: "gemini-2.0-flash",
     generationConfig,
   });
 
