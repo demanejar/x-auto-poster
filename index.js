@@ -36,7 +36,7 @@ async function run() {
 
   // Write your prompt here
   const prompt =
-    "create bigdata content like Spark, Hadoop or other opensource or crawler, under 280 characters and must be plain text, you can use emojis, insert website link https://demanejar.github.io/ and tag #demanejar into the post, occasionally attach a link to an article in demanejar into the post.";
+    "create bigdata content like Spark, Hadoop, other opensource or crawler such as: scrapy, selenium, choose one topic and write, under 280 characters and must be plain text, you can use emojis, insert website link https://demanejar.github.io/ and tag #demanejar into the post, occasionally attach a link to an article in demanejar into the post.";
 
   const result = await model.generateContent(prompt);
   const response = await result.response;
